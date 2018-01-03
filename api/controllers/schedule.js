@@ -4,7 +4,7 @@ var util = require('util');
 
 module.exports = {
   getSchedule: getSchedule,
-  addSchedule: addSchedule
+  createSchedule: createSchedule
 };
 
 function getSchedule(req, res) {
@@ -14,7 +14,7 @@ function getSchedule(req, res) {
   res.json(msgRes);
 }
 
-function addSchedule(req, res) {
+function createSchedule(req, res) {
 
   //var sellerId = req.query.sellerId;
   var Schedule = {"sellerId": "123"};

@@ -14,13 +14,14 @@ schemes:
 # format of bodies a client can send (Content-Type)
 consumes:
   - application/json
+  - application/octet-stream
 # format of the responses to the client (Accepts)
 produces:
   - application/json
 paths:
   /schedule/event/{sellerId}:
     # binds a127 app logic to a route
-    x-swagger-router-controller: schedule
+    x-swagger-router-controller: "schedule"
     get:
       tags:
         - "schedule"
@@ -47,7 +48,7 @@ paths:
       tags:
         - "schedule"
       summary: "Returns 'Schedule' of Seller"
-      operationId: "addSchedule"
+      operationId: "createSchedule"
       parameters:
         - name: "sellerId"
           in: "path"
@@ -58,32 +59,7 @@ paths:
           in: "body"
           required: false
           schema:
-            $ref: "#/definitions/Schedule"
-      responses:
-        "200":
-          description: "Success"
-          schema:
-            $ref: "#/definitions/ScheduleResponse"
-        default:
-          description: "Error"
-          schema:
-            $ref: "#/definitions/ErrorResponse"
-    put:
-      tags:
-        - "schedule"
-      summary: "Returns 'Schedule' of Seller"
-      operationId: "updateSchedule"
-      parameters:
-        - name: "sellerId"
-          in: "path"
-          description: "The schedule of the seller"
-          required: true
-          type: string
-        - name: "body"
-          in: "body"
-          required: false
-          schema:
-            $ref: "#/definitions/Schedule"
+            $ref: "#/definitions/EventSchedule"
       responses:
         "200":
           description: "Success"
@@ -94,18 +70,86 @@ paths:
           schema:
             $ref: "#/definitions/ErrorResponse"
   /schedule/event/{sellerId}/{eventId}:
-    x-swagger-router-controller: schedule
-    delete:
+    x-swagger-router-controller: "event"
+    get:
       tags:
-        - "schedule"
-      summary: "Returns 'Schedule' of Seller"
-      operationId: "disableSchedule"
+        - "event"
+      description: Returns 'EventSchedule' of Seller
+      operationId: "getEvent"
       parameters:
         - name: "sellerId"
           in: "path"
           description: "The schedule of the seller"
           required: true
           type: string
+        - name: "eventId"
+          in: "path"
+          description: "The schedule of the seller"
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/ScheduleResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+    put:
+      tags:
+        - "schedule"
+      summary: "Returns 'Schedule' of Seller"
+      operationId: "updateEvent"
+      parameters:
+        - name: "sellerId"
+          in: "path"
+          description: "The schedule of the seller"
+          required: true
+          type: string
+        - name: "eventId"
+          in: "path"
+          description: "The schedule of the seller"
+          required: true
+          type: string
+        - name: "body"
+          in: "body"
+          required: false
+          schema:
+            $ref: "#/definitions/EventSchedule"
+      responses:
+        "200":
+          description: "Success"
+          schema:
+            $ref: "#/definitions/ScheduleResponse"
+        default:
+          description: "Error"
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /schedule/event/{sellerId}/{eventId}/{active}:
+    x-swagger-router-controller: "event"
+    put:
+      tags:
+        - "event"
+      summary: "Returns 'Schedule' of Seller"
+      operationId: "changeStatusEvent"
+      parameters:
+        - name: "sellerId"
+          in: "path"
+          description: "The schedule of the seller"
+          required: true
+          type: string
+        - name: "active"
+          in: "path"
+          description: "The schedule of the seller"
+          required: true
+          type: string
+          default: enable
+          enum:
+          - enable
+          - disable
         - name: "eventId"
           in: "path"
           description: "The schedule of the seller"
@@ -124,7 +168,7 @@ paths:
     x-swagger-pipe: swagger_raw
 # complex objects have schema definitions
 definitions:
-  Schedule:
+  EventSchedule:
     type: "object"
     properties:
       id:
@@ -143,6 +187,9 @@ definitions:
           - connection issues
           - overloaded
           - holidays
+      active:
+        type: "boolean"
+        default: false
     xml:
       name: "Schedule"
   ScheduleResponse:
