@@ -72,7 +72,7 @@ describe('/schedule/event/change-status', function() {
       /*eslint-enable*/
       api.put('/v1/schedule/event/change-status')
       .query({
-        sellerId: 'DATA GOES HERE',eventId: 'DATA GOES HERE',isActive: 'DATA GOES HERE'
+        eventId: 'TESTE123456',isActive: true
       })
       .set('Content-Type', 'application/json')
       .send({
@@ -102,7 +102,7 @@ describe('/schedule/event/change-status', function() {
       /*eslint-enable*/
       api.put('/v1/schedule/event/change-status')
       .query({
-        sellerId: 'DATA GOES HERE',eventId: 'DATA GOES HERE',isActive: 'DATA GOES HERE'
+        eventId: 'TESTE123456',isActive: true
       })
       .set('Content-Type', 'application/octet-stream')
       .expect(200)
@@ -130,7 +130,7 @@ describe('/schedule/event/change-status', function() {
       /*eslint-enable*/
       api.put('/v1/schedule/event/change-status')
       .query({
-        sellerId: 'DATA GOES HERE',eventId: 'DATA GOES HERE',isActive: 'DATA GOES HERE'
+        eventId: 'TESTE123456',isActive: true
       })
       .set('Content-Type', 'application/json')
       .send({
@@ -160,7 +160,7 @@ describe('/schedule/event/change-status', function() {
       /*eslint-enable*/
       api.put('/v1/schedule/event/change-status')
       .query({
-        sellerId: 'DATA GOES HERE',eventId: 'DATA GOES HERE',isActive: 'DATA GOES HERE'
+        eventId: 'TESTE123456',isActive: true
       })
       .set('Content-Type', 'application/octet-stream')
       .expect('DEFAULT RESPONSE CODE HERE')

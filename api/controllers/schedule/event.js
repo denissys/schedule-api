@@ -28,7 +28,7 @@ function getEvents(req, res) {
     } else {
       console.log('error on [getEvents] --> ' + err);
       res.status(500);
-      res.json({'status': 'Unexpected error to find event'});
+      res.json(err);
     }
   });
 }
@@ -47,13 +47,12 @@ function createEvent(req, res) {
     if (!err) {
       event._id = doc._id;
       res.status(201);
-      res.json(event);      
+      res.json(event);
     } else {
       console.log('error on [createEvent] --> ' + err);
       res.status(500);
-      res.json({'status': 'Unexpected error to created event'});
+      res.json(err);
     }
-
   });
 }
 
@@ -81,7 +80,7 @@ function updateEvent(req, res) {
       } else {
         console.log('error on [updateEvent] --> ' + err);
         res.status(500);
-        res.json({'status': 'Unexpected error to update event'});
+        res.json(err);
       }
   });
 }
@@ -104,7 +103,7 @@ function eventStatus(req, res) {
       } else {
         console.log('error on [updateEvent] --> ' + err);
         res.status(500);
-        res.json({'status': 'Unexpected error to update event'});
+        res.json(err);
       }
   });
 }

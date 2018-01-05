@@ -72,7 +72,7 @@ describe('/schedule/event', function() {
       /*eslint-enable*/
       api.get('/v1/schedule/event')
       .query({
-sellerId: 'DATA GOES HERE'
+sellerId: 'DATA GOES HERE',eventId: 'DATA GOES HERE'
       })
       .set('Content-Type', 'application/json')
       .expect(200)
@@ -100,7 +100,7 @@ sellerId: 'DATA GOES HERE'
       /*eslint-enable*/
       api.get('/v1/schedule/event')
       .query({
-sellerId: 'DATA GOES HERE'
+sellerId: 'DATA GOES HERE',eventId: 'DATA GOES HERE'
       })
       .set('Content-Type', 'application/octet-stream')
       .expect(200)
@@ -128,7 +128,7 @@ sellerId: 'DATA GOES HERE'
       /*eslint-enable*/
       api.get('/v1/schedule/event')
       .query({
-sellerId: 'DATA GOES HERE'
+sellerId: 'DATA GOES HERE',eventId: 'DATA GOES HERE'
       })
       .set('Content-Type', 'application/json')
       .expect('DEFAULT RESPONSE CODE HERE')
@@ -156,7 +156,7 @@ sellerId: 'DATA GOES HERE'
       /*eslint-enable*/
       api.get('/v1/schedule/event')
       .query({
-sellerId: 'DATA GOES HERE'
+sellerId: 'DATA GOES HERE',eventId: 'DATA GOES HERE'
       })
       .set('Content-Type', 'application/octet-stream')
       .expect('DEFAULT RESPONSE CODE HERE')
@@ -308,7 +308,7 @@ sellerId: 'DATA GOES HERE'
       /*eslint-enable*/
       api.put('/v1/schedule/event')
       .query({
-        sellerId: 'DATA GOES HERE'
+        eventId: 'DATA GOES HERE'
       })
       .set('Content-Type', 'application/json')
       .send({
@@ -339,7 +339,7 @@ sellerId: 'DATA GOES HERE'
       /*eslint-enable*/
       api.put('/v1/schedule/event')
       .query({
-        sellerId: 'DATA GOES HERE'
+        eventId: 'DATA GOES HERE'
       })
       .set('Content-Type', 'application/octet-stream')
       .expect(200)
@@ -367,7 +367,7 @@ sellerId: 'DATA GOES HERE'
       /*eslint-enable*/
       api.put('/v1/schedule/event')
       .query({
-        sellerId: 'DATA GOES HERE'
+        eventId: 'DATA GOES HERE'
       })
       .set('Content-Type', 'application/json')
       .send({
@@ -398,7 +398,7 @@ sellerId: 'DATA GOES HERE'
       /*eslint-enable*/
       api.put('/v1/schedule/event')
       .query({
-        sellerId: 'DATA GOES HERE'
+        eventId: 'DATA GOES HERE'
       })
       .set('Content-Type', 'application/octet-stream')
       .expect('DEFAULT RESPONSE CODE HERE')
