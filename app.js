@@ -8,8 +8,8 @@ var app = require('express')();
 
 module.exports = app;
 
-// Load models
-var EventSchedule = require('./models/EventSchedule.js');
+// Registered models
+var Event = require('./models/schedule/Event.js');
 
 var config = {
   appRoot: __dirname

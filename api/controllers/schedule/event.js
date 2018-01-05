@@ -13,43 +13,98 @@ module.exports = {
 function getEvents(req, res) {
 
   var sellerId = req.query.sellerId;
-  var msgRes = util.format('Schedule, %s', sellerId);
-  res.json(msgRes);
+  var eventId = req.query.eventId;
+  var event = mongoose.model('Event');
+
+  var query = { 'sellerId': sellerId }
+  if (eventId) {
+    query._id = eventId; 
+  }
+
+  event.find(query, function (err, events) {
+    if (!err) {
+      res.status(200);
+      res.json(events);
+    } else {
+      console.log('error on [getEvents] --> ' + err);
+      res.status(500);
+      res.json({'status': 'Unexpected error to find event'});
+    }
+  });
 }
 
 function createEvent(req, res) {
 
-  //console.log(req.body);
-  console.log(req.params);
+  var newEvent = req.body;
+  var event = mongoose.model('Event').newInstance();
+  event.sellerId = req.query.sellerId;
+  event.startDatetime = newEvent.startDatetime;
+  event.endDatetime = newEvent.endDatetime;
+  event.eventType = newEvent.eventType;
+  event.isActive = newEvent.isActive;
 
-  var EventSchedule = mongoose.model('EventSchedule');
-  var instance = new EventSchedule();
-  instance.id = 2;
-  instance.startDatetime = '2017-12-31T00:00:01.01Z';
-  instance.endDatetime = '2017-12-31T00:00:01.01Z';
-  instance.event = 'lack_of_delivery_staff';
-  instance.active = true;
-  // instance.save(function (err) {
-  // });
+  event.save(function (err, doc) {
+    if (!err) {
+      event._id = doc._id;
+      res.status(201);
+      res.json(event);      
+    } else {
+      console.log('error on [createEvent] --> ' + err);
+      res.status(500);
+      res.json({'status': 'Unexpected error to created event'});
+    }
 
-  //var sellerId = req.query.sellerId;
-  var Schedule = {"sellerId": "123"};
-  res.header('Content-Type', 'application/json');
-  res.json(Schedule);
+  });
 }
 
 function updateEvent(req, res) {
 
-  //var sellerId = req.query.sellerId;
-  var Schedule = {"sellerId": "123"};
-  res.header('Content-Type', 'application/json');
-  res.json(Schedule);
+  var updatedEvent = req.body;
+  var event = mongoose.model('Event');
+
+  event.update({ _id: req.query.eventId }, 
+    { $set: {
+      'startDatetime': updatedEvent.startDatetime,
+      'endDatetime': updatedEvent.endDatetime,
+      'eventType': updatedEvent.eventType,
+      'isActive': updatedEvent.isActive
+    }}, 
+    function (err, status) {
+      if (!err) {
+        if (status.ok == 1 && status.n == 1) {
+          res.status(200);
+          res.json({'status': 'event updated'});
+        } else {
+          res.status(404);
+          res.json({'status': 'event not found'});
+        }        
+      } else {
+        console.log('error on [updateEvent] --> ' + err);
+        res.status(500);
+        res.json({'status': 'Unexpected error to update event'});
+      }
+  });
 }
 
 function eventStatus(req, res) {
 
-  //var sellerId = req.query.sellerId;
-  var Schedule = {"sellerId": "123"};
-  res.header('Content-Type', 'application/json');
-  res.json(Schedule);
+  var event = mongoose.model('Event');
+
+  event.update({ _id: req.query.eventId }, 
+    { $set: { 'isActive': req.query.isActive } }, 
+    function (err, status) {
+      if (!err) {
+        if (status.ok == 1 && status.n == 1) {
+          res.status(200);
+          res.json({'status': 'event updated'});
+        } else {
+          res.status(404);
+          res.json({'status': 'event not found'});
+        }        
+      } else {
+        console.log('error on [updateEvent] --> ' + err);
+        res.status(500);
+        res.json({'status': 'Unexpected error to update event'});
+      }
+  });
 }

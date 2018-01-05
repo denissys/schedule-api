@@ -33,6 +33,11 @@ paths:
           description: The schedule of the seller
           required: true
           type: string
+        - name: "eventId"
+          in: "query"
+          description: "The schedule of the seller"
+          required: false
+          type: string
       responses:
         "200":
           description: Success
@@ -58,7 +63,7 @@ paths:
           in: "body"
           required: false
           schema:
-            $ref: "#/definitions/CreateEvent"
+            $ref: "#/definitions/Event"
       responses:
         "200":
           description: "Success"
@@ -75,7 +80,7 @@ paths:
       summary: Update 'Event' of Schedule by Seller
       operationId: "updateEvent"
       parameters:
-        - name: "sellerId"
+        - name: "eventId"
           in: "query"
           description: "The schedule of the seller"
           required: true
@@ -104,11 +109,6 @@ paths:
       summary: Enable or disable an 'Event'
       operationId: "eventStatus"
       parameters:
-        - name: "sellerId"
-          in: "query"
-          description: "The schedule of the seller"
-          required: true
-          type: string
         - name: "eventId"
           in: "query"
           description: "The schedule of the seller"
@@ -136,15 +136,13 @@ definitions:
   Event:
     type: "object"
     properties:
-      id:
-        type: "string"
-      startTime:
+      startDatetime:
         type: "string"
         default: "2017-12-31T00:00:01.01Z"
-      endTime:
+      endDatetime:
         type: "string"
         default: "2017-12-31T23:59:59.59Z"
-      event:
+      eventType:
         type: "string"
         default: lack_of_delivery_staff
         enum:
@@ -152,27 +150,7 @@ definitions:
           - connection issues
           - overloaded
           - holidays
-      active:
-        type: "boolean"
-        default: true
-  CreateEvent:
-    type: "object"
-    properties:
-      startTime:
-        type: "string"
-        default: "2017-12-31T00:00:01.01Z"
-      endTime:
-        type: "string"
-        default: "2017-12-31T23:59:59.59Z"
-      event:
-        type: "string"
-        default: lack_of_delivery_staff
-        enum:
-          - lack_of_delivery_staff
-          - connection issues
-          - overloaded
-          - holidays
-      active:
+      isActive:
         type: "boolean"
         default: true
   ScheduleResponse:
