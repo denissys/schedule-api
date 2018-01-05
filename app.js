@@ -1,20 +1,26 @@
 'use strict';
 
-var SwaggerExpress = require('swagger-express-mw');
 var SwaggerUi = require('swagger-tools/middleware/swagger-ui');
+var SwaggerExpress = require('swagger-express-mw');
+var bodyParser = require('body-parser')
+var db = require('./server/mongo/connection.js').connect();
 var app = require('express')();
 
-module.exports = app; // for testing
+module.exports = app;
+
+// Load models
+var EventSchedule = require('./models/EventSchedule.js');
 
 var config = {
-  appRoot: __dirname // required config
+  appRoot: __dirname
 };
 
 SwaggerExpress.create(config, function(err, swaggerExpress) {
   if (err) { throw err; }
 
-  // Add swagger-ui (This must be before swaggerExpress.register)
   app.use(SwaggerUi(swaggerExpress.runner.swagger));
+  app.use(bodyParser.json())
+  app.use(bodyParser.urlencoded({extended: true}))
 
   // install middleware
   swaggerExpress.register(app);

@@ -72,9 +72,37 @@ describe('/schedule/event', function() {
       /*eslint-enable*/
       api.get('/v1/schedule/event')
       .query({
-sellerId: 'DATA GOES HERE',bruno: 'DATA GOES HERE'
+sellerId: 'DATA GOES HERE'
       })
       .set('Content-Type', 'application/json')
+      .expect(200)
+      .end(function(err, res) {
+        if (err) return done(err);
+
+        expect(validator.validate(res.body, schema)).to.be.true;
+        done();
+      });
+    });
+
+    it('should respond with 200 Success', function(done) {
+      /*eslint-disable*/
+      var schema = {
+        "required": [
+          "message"
+        ],
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        }
+      };
+
+      /*eslint-enable*/
+      api.get('/v1/schedule/event')
+      .query({
+sellerId: 'DATA GOES HERE'
+      })
+      .set('Content-Type', 'application/octet-stream')
       .expect(200)
       .end(function(err, res) {
         if (err) return done(err);
@@ -100,9 +128,37 @@ sellerId: 'DATA GOES HERE',bruno: 'DATA GOES HERE'
       /*eslint-enable*/
       api.get('/v1/schedule/event')
       .query({
-sellerId: 'DATA GOES HERE',bruno: 'DATA GOES HERE'
+sellerId: 'DATA GOES HERE'
       })
       .set('Content-Type', 'application/json')
+      .expect('DEFAULT RESPONSE CODE HERE')
+      .end(function(err, res) {
+        if (err) return done(err);
+
+        expect(validator.validate(res.body, schema)).to.be.true;
+        done();
+      });
+    });
+
+    it('should respond with default Error', function(done) {
+      /*eslint-disable*/
+      var schema = {
+        "required": [
+          "message"
+        ],
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        }
+      };
+
+      /*eslint-enable*/
+      api.get('/v1/schedule/event')
+      .query({
+sellerId: 'DATA GOES HERE'
+      })
+      .set('Content-Type', 'application/octet-stream')
       .expect('DEFAULT RESPONSE CODE HERE')
       .end(function(err, res) {
         if (err) return done(err);
@@ -130,10 +186,41 @@ sellerId: 'DATA GOES HERE',bruno: 'DATA GOES HERE'
 
       /*eslint-enable*/
       api.post('/v1/schedule/event')
+      .query({
+        sellerId: 'DATA GOES HERE'
+      })
       .set('Content-Type', 'application/json')
       .send({
         body: 'DATA GOES HERE'
       })
+      .expect(200)
+      .end(function(err, res) {
+        if (err) return done(err);
+
+        expect(validator.validate(res.body, schema)).to.be.true;
+        done();
+      });
+    });
+
+    it('should respond with 200 Success', function(done) {
+      /*eslint-disable*/
+      var schema = {
+        "required": [
+          "message"
+        ],
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        }
+      };
+
+      /*eslint-enable*/
+      api.post('/v1/schedule/event')
+      .query({
+        sellerId: 'DATA GOES HERE'
+      })
+      .set('Content-Type', 'application/octet-stream')
       .expect(200)
       .end(function(err, res) {
         if (err) return done(err);
@@ -158,10 +245,162 @@ sellerId: 'DATA GOES HERE',bruno: 'DATA GOES HERE'
 
       /*eslint-enable*/
       api.post('/v1/schedule/event')
+      .query({
+        sellerId: 'DATA GOES HERE'
+      })
       .set('Content-Type', 'application/json')
       .send({
         body: 'DATA GOES HERE'
       })
+      .expect('DEFAULT RESPONSE CODE HERE')
+      .end(function(err, res) {
+        if (err) return done(err);
+
+        expect(validator.validate(res.body, schema)).to.be.true;
+        done();
+      });
+    });
+
+    it('should respond with default Error', function(done) {
+      /*eslint-disable*/
+      var schema = {
+        "required": [
+          "message"
+        ],
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        }
+      };
+
+      /*eslint-enable*/
+      api.post('/v1/schedule/event')
+      .query({
+        sellerId: 'DATA GOES HERE'
+      })
+      .set('Content-Type', 'application/octet-stream')
+      .expect('DEFAULT RESPONSE CODE HERE')
+      .end(function(err, res) {
+        if (err) return done(err);
+
+        expect(validator.validate(res.body, schema)).to.be.true;
+        done();
+      });
+    });
+
+  });
+
+  describe('put', function() {
+    it('should respond with 200 Success', function(done) {
+      /*eslint-disable*/
+      var schema = {
+        "required": [
+          "message"
+        ],
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        }
+      };
+
+      /*eslint-enable*/
+      api.put('/v1/schedule/event')
+      .query({
+        sellerId: 'DATA GOES HERE'
+      })
+      .set('Content-Type', 'application/json')
+      .send({
+        body: 'DATA GOES HERE'
+      })
+      .expect(200)
+      .end(function(err, res) {
+        if (err) return done(err);
+
+        expect(validator.validate(res.body, schema)).to.be.true;
+        done();
+      });
+    });
+
+    it('should respond with 200 Success', function(done) {
+      /*eslint-disable*/
+      var schema = {
+        "required": [
+          "message"
+        ],
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        }
+      };
+
+      /*eslint-enable*/
+      api.put('/v1/schedule/event')
+      .query({
+        sellerId: 'DATA GOES HERE'
+      })
+      .set('Content-Type', 'application/octet-stream')
+      .expect(200)
+      .end(function(err, res) {
+        if (err) return done(err);
+
+        expect(validator.validate(res.body, schema)).to.be.true;
+        done();
+      });
+    });
+
+    it('should respond with default Error', function(done) {
+      /*eslint-disable*/
+      var schema = {
+        "required": [
+          "message"
+        ],
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        }
+      };
+
+      /*eslint-enable*/
+      api.put('/v1/schedule/event')
+      .query({
+        sellerId: 'DATA GOES HERE'
+      })
+      .set('Content-Type', 'application/json')
+      .send({
+        body: 'DATA GOES HERE'
+      })
+      .expect('DEFAULT RESPONSE CODE HERE')
+      .end(function(err, res) {
+        if (err) return done(err);
+
+        expect(validator.validate(res.body, schema)).to.be.true;
+        done();
+      });
+    });
+
+    it('should respond with default Error', function(done) {
+      /*eslint-disable*/
+      var schema = {
+        "required": [
+          "message"
+        ],
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        }
+      };
+
+      /*eslint-enable*/
+      api.put('/v1/schedule/event')
+      .query({
+        sellerId: 'DATA GOES HERE'
+      })
+      .set('Content-Type', 'application/octet-stream')
       .expect('DEFAULT RESPONSE CODE HERE')
       .end(function(err, res) {
         if (err) return done(err);
