@@ -3,7 +3,7 @@
 var SwaggerUi = require('swagger-tools/middleware/swagger-ui');
 var SwaggerExpress = require('swagger-express-mw');
 var bodyParser = require('body-parser')
-var db = require('./server/mongo/connection.js').connect();
+var mongoClient = require('./lib/client/mongo/mongo-client.js').connect();
 var app = require('express')();
 
 module.exports = app;
