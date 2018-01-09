@@ -34,4 +34,11 @@ swagger:
     swagger_raw:
       name: swagger_raw
 
+db:
+  mongo:
+    address: localhost
+    port: 27001
+    databaseName: schedule
+
+
 # any other values in this file are just loaded into the config for application access...

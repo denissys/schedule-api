@@ -36,7 +36,8 @@ function getEvents(req, res) {
 function createEvent(req, res) {
 
   var newEvent = req.body;
-  var event = mongoose.model('Event').newInstance();
+  var model = mongoose.model('Event')
+  var event = model.newInstance();
   event.sellerId = req.query.sellerId;
   event.startDatetime = newEvent.startDatetime;
   event.endDatetime = newEvent.endDatetime;

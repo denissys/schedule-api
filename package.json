@@ -13,7 +13,8 @@
     "mongoose": "^5.0.0-rc1",
     "mongoose-unique-validator": "^1.0.6",
     "swagger-express-mw": "^0.7.0",
-    "swagger-tools": "^0.10.3"
+    "swagger-tools": "^0.10.3",
+    "yaml-config": "^0.3.0"
   },
   "devDependencies": {
     "should": "^7.1.0",
