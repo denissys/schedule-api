@@ -1,10 +1,10 @@
 'use strict';
 
-var SwaggerUi = require('swagger-tools/middleware/swagger-ui');
-var SwaggerExpress = require('swagger-express-mw');
-var bodyParser = require('body-parser')
-var mongoClient = require('./lib/client/mongo/mongo-client.js').connect();
-var app = require('express')();
+const SwaggerUi = require('swagger-tools/middleware/swagger-ui'),
+      SwaggerExpress = require('swagger-express-mw'),
+      bodyParser = require('body-parser'),
+      mongoClient = require('./lib/client/mongo/mongo-client.js').connect(),
+      app = require('express')();
 
 module.exports = app;
 
